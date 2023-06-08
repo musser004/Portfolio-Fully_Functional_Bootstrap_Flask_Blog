@@ -16,7 +16,7 @@ import os
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 ckeditor = CKEditor(app)
-Bootstrap(app)
+bootstrap = Bootstrap(app)
 
 # Gravatar setup for user comments
 
