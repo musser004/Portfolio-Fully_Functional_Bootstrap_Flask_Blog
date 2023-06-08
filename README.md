@@ -2,7 +2,7 @@
 
 Live deployed website: https://web-production-9a41.up.railway.app/
 
-Description: Fully functioning blog where the users can register an email + password, then can leave comments on blog posts. Only the admin user can create, edit, and remove blog posts. Front-end development using Bootstrap, back-end development using Flask
+Description: Fully functioning blog where the users can register an email + password, then can leave comments on blog posts. Only the admin user can create, edit, and remove blog posts. Front-end development using Bootstrap, back-end development using Flask. Connects to PostgreSQL database for blog posts/user/comment data
 
 Python Libraries: Flask, SQL-Alchemy, Datetime, OS
 
