@@ -10,16 +10,13 @@ from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 from flask_gravatar import Gravatar
 from functools import wraps
 import os
-# import MySQLdb
-import pymysql
-pymysql.install_as_MySQLdb()
 
 # Initial Flask setup
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 ckeditor = CKEditor(app)
-Bootstrap(app)
+bootstrap = Bootstrap(app)
 
 # Gravatar setup for user comments
 
@@ -34,7 +31,7 @@ gravatar = Gravatar(app,
 
 # Connecting to database
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['MYSQL_DB']
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['POSTGRESQL_DB']
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 login_manager = LoginManager()
