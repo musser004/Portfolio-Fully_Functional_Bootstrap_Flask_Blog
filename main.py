@@ -10,7 +10,9 @@ from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
 from flask_gravatar import Gravatar
 from functools import wraps
 import os
-import MySQLdb
+# import MySQLdb
+import pymysql
+pymysql.install_as_MySQLdb()
 
 # Initial Flask setup
 
