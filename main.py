@@ -6,7 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import relationship
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
-from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
+from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm, ContactForm
 from flask_gravatar import Gravatar
 from functools import wraps
 import os
@@ -16,7 +16,7 @@ import os
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 ckeditor = CKEditor(app)
-bootstrap = Bootstrap(app)
+Bootstrap(app)
 
 # Gravatar setup for user comments
 
@@ -213,9 +213,19 @@ def about():
 # Contact page setup
 
 
-@app.route("/contact")
+@app.route("/contact", methods=["GET", "POST"])
 def contact():
-    return render_template("contact.html")
+    form = ContactForm()
+
+    # Contact form setup
+
+    if form.validate_on_submit():
+        flash("Message successfully sent!")
+        form.name.data = ""
+        form.email.data = ""
+        form.phone.data = ""
+        form.message.data = ""
+    return render_template("contact.html", form=form)
 
 # New post page setup (admin only)
 
@@ -264,6 +274,7 @@ def edit_post(post_id):
     return render_template("make-post.html", form=edit_form)
 
 # Delete post process (admin only)
+
 
 @app.route("/delete/<int:post_id>")
 @admin_only
